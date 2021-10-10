@@ -1,0 +1,37 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "https://raw.githubusercontent.com/jackren0000/Work-2/main/armed-forces-personnel-percent.csv"},
+    "vconcat": [{
+      "width": 480,
+      "mark": "area",
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal",
+          "scale": {"domain": {"param": "brush"}},
+          "axis": {"title": ""}
+        },
+        "y": {"aggregate":"mean","field": "Armed forces personnel (% of total population) (World Bank (2017))","type": "quantitative", "title": "Armed forces personnel (% of total population) (World Bank (2017))"}
+      }
+    }, {
+      "width": 480,
+      "height": 60,
+      "mark": "area",
+      "params": [{
+        "name": "brush",
+        "select": {"type": "interval", "encodings": ["x"]}
+      }],
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "temporal"
+        },
+        "y": {
+          "aggregate":"mean",
+          "field": "Armed forces personnel (% of total population) (World Bank (2017))",
+          "type": "quantitative",
+          "axis": {"tickCount": 3, "grid": false}
+        }
+      }
+    }]
+  }
