@@ -1,0 +1,38 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 390,
+    "title": " ",
+    "layer": [
+      {
+        "projection": {"type":"mercator"},
+        "data": {
+          "url": "https://raw.githubusercontent.com/jackren0000/FIT3179/main/custom.geo-3-2.json",
+          "format": {
+            "type": "topojson",
+            "feature": "custom"
+          }
+            },
+        "transform": [
+          {
+            "lookup": "properties.admin",
+            "from": {
+              "data": {
+                "url": "https://raw.githubusercontent.com/jackren0000/FIT3179/main/relig_iso.csv"
+              },
+              "key": "country",
+              "fields": ["gdp_pc"]
+            }
+          }
+        ],
+        "mark": {"type": "geoshape"},
+        "encoding": {
+          "color": {"field": "gdp_pc", "type":"quantitative", "scale": {"type":"linear"}, "title": "GDP per capita"},
+          "tooltip": [
+            {"field": "properties.name", "type":"nominal", "title": "Country"},
+            {"field": "gdp_pc", "type":"quantitative","title": "gdp"}
+          ]
+        }
+      }
+    ]
+  }

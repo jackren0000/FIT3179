@@ -1,27 +1,215 @@
 <!DOCTYPE html>
- <html lang="en">
-
+<html>
 <head>
+<title>Can GDP reflect military expenditure and happiness index?</title>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
 <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
 
 <script src="vega_lite_vis.js"></script>
 
-<title> vega-lite graph </title>
+  <!-- custom style -->
+  <style>
+    *{
+      font-family: 'Calibri', sans-serif;
+    }
+    h1{
+      font-weight: 1200;
+    }
+    h2{
+      font-family: 'Times New Roman', serif;
+    }
+     body{
+       background-color: #b5b0df;
+     }
+     .page{
+       width: 950px;    
+       background-color: white;   
+       margin: auto;
+       padding: 50px;
+       padding-top: 35px;
+    }
+    .vis-container{
+      width: 100%;
+    }
+    .description h2, h1{
+      margin-top:0px;
+    }
+    .description-right {
+      padding: 10px;
+    }
+    .description-left{
+      padding: 10px;
+    }
+    .pure-g{
+      margin-bottom: 50px;
+    }
+    .pure-u-1-1.small-font p{
+        font-style: italic;
+        font-size: 14px;
+        font-family: 'Georgia', serif;
+        text-align: center;
+    }
+    .pure-u-1-1 h1{
+        font-size: 24px;
+        font-family: 'Georgia', serif;
+        text-align: center;
+    }
+    .pure-u-1-1 p{
+        font-style: italic;
+        font-size: 18px;
+        font-family: 'Georgia', serif;
+        text-align: center;
+    }
+    #vis1{
+      padding-right: 30px;
+    }
+/*     #vis2{
+      width: 500px;
+      height: 400px;
+    } */
+/*     #vis4{
+      padding-left: 20px;
+    }
+    #vis3{
+      padding-left: 10px;
+    } */
+    #vis6{
+      padding-left: 30px;
+    }
+  </style>
 </head>
-
 <body>
-<h1>First vega-lite graph</h1>
-<div id="map">
-</div>
-<h1>Second vega-lite graph</h1>
-<div id="areachart">
-</div>
-</body>
 
+ <div class="page">
+
+   <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1>Can GDP reflect military expenditure and happiness index?</h1>
+        <p>Visualisations among this page show the relationship between military expenditure, GDP and happiness index</p>
+
+      </div>
+    </div>
+  <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+          <div id="vis1" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+          <div class="description description-right map">
+            <h2>World GDP map</h2>
+            <p>This map shows the distribution of GDP around the world. </p>
+            <p>Gross domestic product (GDP) is a monetary measure of the market value of all the final goods and services produced in a specific time period. It is often considered to be the "world's most powerful statistical indicator of national development and progress".</p>
+            <p><span style="font-weight: bold;">Australia</span>,  <span style="font-weight: bold;">the United States</span>,  <span style="font-weight: bold;">Canada</span> and most of <span style="font-weight: bold;">Europe</span>  have <span style="font-weight: bold;">high</span>  GDP. <span style="font-weight: bold;">South America</span>, <span style="font-weight: bold;">Asia</span> and <span style="font-weight: bold;">Africa</span> and most <span style="font-weight: bold;">developing countries</span> have <span style="font-weight: bold;">low</span> GDP. GDP in most countries is <span style="font-weight: bold;">above</span> 20,000(per capita).</p>
+            <p> <p><span style="font-style: italic;">So, is it related to military expenditure ?</span></p>
+        </p>      
+        </div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-1-3">
+          <div class="description description-left choropleth_map">
+            <h2>World military expenditure(% of GDP) map</h2>
+            <p>The map shows the distribution of military expenditure around the world. </p>
+            <p><span style="font-weight: bold;">Libya, Saudi Arabia and Algeria</span> contains the most military expenditure which is <span style="font-weight: bold;">15.48%, 7.98% and 6.01%</span> respectively. GDP is not high in these countries. Besides, <span style="font-weight: bold;">Russia, colombia and Namibia</span> also have <span style="font-weight: bold;">more than 3%</span> military expenditure(% of GDP). None of these countries with high military spending has high GDP.
+            <br>
+            <p>However, some <span style="font-weight: bold;">Middle Eastern countries</span> also have relatively higher GDP at higher military costs.<p>
+            <p><span style="font-style: italic;">Filter can be applied by dragging the slider to filter the minimum military expenditure  for the states.</span></p>
+          </div>
+        </div>
+        <div class="pure-u-2-3">
+          <div id="vis2"  class="vis-container"></div>
+        </div>
+      
+    </div>
+    <!-- end pure grid group -->
+   
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+          <div id="vis6" class="vis-container"></div>
+        </div>
+        
+        <div class="pure-u-1-3">
+          <div class="description description-right linechart">
+            <h2>The trend of military expenditure</h2>
+            
+            <p>This line chart shows the military expenditure changes in different regions. </p>
+            <p>We can see that <span style="color: #246d07; font-weight: bold;">United States</span> military spending has nearly always been largely above other In second place was <span style="color: #309209; font-weight: bold;">South Korea</span> , which briefly overtook the US between 1975 and 1980. <span style="color: #1e0870; font-weight: bold;">United Kingdom</span> military spending has been falling steadily. All three countries have higher military spending than the <span style="color: #8af102; font-weight: bold;">world</span> average. The military expenditure of <span style="color: #df1111; font-weight: bold;">Australia</span> and <span style="color: #6374bd; font-weight: bold;">Germanny</span> is relatively low in GDP. In recent years, <span style="color: #df1111; font-weight: bold;">Australia</span> is lower than <span style="color: #6374bd; font-weight: bold;">Germanny</span>.
+            <p><span style="font-style: italic;">Filter can be applied by dragging in the second figure to see the details of the specific years, selection on the legend can also apply filter on the regions.</span></p>
+            <div class="pure-u-1-3">
+              <div id="vis4"  class="vis-container"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+   
+    <!-- pure grid group -->
+    <div class="pure-g">
+      <div class="pure-u-1-3">
+        <div class="description description-left chart">
+          <h2>Does GDP correlate with happiness?</h2>
+          <p>The headline result is clear: the <span style="font-weight: bold;">richer</span> the country, on average, the <span style="font-weight: bold;">higher</span> the level of <span style="font-weight: bold;">self-reported happiness</span>self-reported happiness. </p>
+          <p>From right figure, we can see a <span style="font-weight: bold;">positive</span> correlation between GDP and happiness index. However, in addition to income, there must be other important factors that can improve people's happiness.</p>
+          <p>In addition to income inequality, other possible important factors are the degree of peace and corruption. In Russia, China, India, Central Asian and Central African countries, for example, the degree of corruption plays an important role in people ' s happiness. In terms of peace, it rationalizes the happiness index of <span style="font-weight: bold;">Russia, Central Asia and Central African countries </span>
+           </p>
+             <p><span style="font-style: italic;">Range selection as the filter can also be applied to this chart.</span></p>
+    
+        </div>
+      </div>
+      
+      <div class="pure-u-1-3">
+        <div id="vis3"  class="vis-container"></div>
+      </div>
+      
+    
+    </div>
+    <!-- end pure grid group -->
+   
+    <!-- pure grid group -->
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+          <div id="vis5"  class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+          <div class="description description-right chart"> 
+            <h2>Using GPI instead of GDP</h2>
+            <p><span style="font-weight: bold;">GDP</span> shows economic activity, measuring all goods and services produced in a given period. In this model, all economic activity contributes to GDP, so any increase in goods/services—whether it is hiring new teachers to improve education or rebuilding homes after a hurricane—positively affect GDP.</p>
+            <p><span style="font-weight: bold;">GPI</span> looks at a combination of economic, environmental, and social indicators to create a picture of the overall progress of a country or state. GPI also starts with measuring economic activity but includes negative economic factors such as income inequality and the cost of underemployment.</p>
+            <p>The welfare of a nation can scarcely be inferred from a measure of national income. If the GDP is up, why is America down? Distinctions must be kept in mind between quantity and quality of growth, between costs and returns, and between the short and long run. Goals for more growth should specify more growth of what and for what.</p>
+            <p><span style="font-style: italic;">Filter can be applied by dragging the slider.</span></p>
+          </div>
+        </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+        <p>This visualisation is created by <a href="https://github.com/jackren0000/FIT3179" target="_blank">Jack</a>. The datasources are from <a href="https://data.worldbank.org/" target="_blank">World Bank</a>, <a href="https://ourworldindata.org/" target="_blank">Our world in data</a> and <a href="https://www.infoplease.com/us/states/state-population-by-rank" target="_blank">the Correlates of War Project</a>.</p>
+      </div>
+    </div>
+  
+    <div class="pure-g">
+      <div class="pure-u-1-1 small-font">
+           </div>
+    </div>
+  
+
+  </div> <!-- end page -->
+   
+
+</body>
 </html>

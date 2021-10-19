@@ -1,0 +1,96 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+      "url": "https://raw.githubusercontent.com/jackren0000/FIT3179/main/military-expenditure-as-share-of-gdp%20(1).csv"
+      },
+  "vconcat": [{
+  "params": [{
+  "name": "industry",
+  "select": {"type": "point", "fields": ["Entity"]},
+  "bind": "legend"
+}
+ ],
+
+  "width": 500,
+  "height": 450,
+  "title": "                              ",
+  "transform": [
+    {"filter": {"field": "Entity", "oneOf": ["Australia", "United States", "United Kingdom", "World", "South Korea", "Germany"]}}
+      ],
+ 
+  "mark": "line",
+  "encoding": {
+  "y": {
+  "field": "Number",
+  "type": "quantitative",
+  "title": "Military expenditure (% of GDP)"
+  },
+  "x": {
+  "field": "Year",
+  "scale": {"domain": {"param": "brush"}},
+  "type": "temporal",
+  "title": ""
+  },
+  "color": {
+  "field": "Entity",
+  "type": "nominal",
+  "scale": {"scheme": "set1"},
+  "title": "Country",
+  "legend": {
+    "orient": "top-right",
+    "direction": "vertical",
+    "legendX": 120,
+    "legendY": 340,
+    "title": null
+  }
+    },
+  "opacity": {
+    "condition": {"param": "industry", "value": 1},
+    "value": 0.2
+  },
+ "tooltip": [
+      {"field": "Entity", "type": "nominal", "title": "Country"},
+      {"field": "Number", "type": "quantitative", "title": "% of GDP", "format": ".2f"}
+   ]
+  }
+},
+
+ {"width": 500,
+  "height": 90,
+  "title": "",
+ 
+
+ 
+ "transform": [
+     
+       {"filter": {"field": "Entity", "oneOf": ["World"]}}
+       
+     
+   ],
+ 
+  "mark": "line",
+  "params": [{
+      "name": "brush",
+      "select": {"type": "interval", "encodings": ["x"]}
+    }],
+  "encoding": {
+  "y": {
+  "field": "Number",
+  "type": "quantitative",
+  "title": "Military expenditure"
+  },
+  "x": {
+  "field": "Year",
+  "type": "temporal"
+  },
+  "color": {
+  "field": "Entity",
+  "type": "nominal"
+  
+  
+  
+    }
+   }
+ }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 600,
+    "height": 430,
+    "title": " ",
+    "data": {"url": "https://raw.githubusercontent.com/jackren0000/FIT3179/main/happiness%20(1).csv"},
+    "transform": [
+      {
+        "filter": {
+          "field": "Year",
+          "oneOf": ["2016", "2017", "2018", "2019"]
+        }}
+    ],
+    "selection": {
+      "continent_highlight": {
+        "type": "multi",
+        "fields": ["Region"],
+        "bind": "legend"
+      }
+    },
+    "mark": "circle",
+    "encoding": {
+      "x": {"field": "GDP", "type": "quantitative", "title": "GDP"},
+      "y": {"field": "Score", "type": "quantitative", "title": "Happiness Score"},
+      "color": {
+        "field": "Region",
+        "scale": {"scheme": "paired"},
+        "legend": {
+          "orient": "bottom-right",
+          "direction": "vertical",
+          "legendX": 120,
+          "legendY": 340,
+          "title": null
+        }
+      },
+      "opacity": {
+        "condition": {"selection": "continent_highlight", "value": 0.6},
+        "value": 0
+      },
+      "tooltip": [
+        {"field": "Country", "type": "ordinal", "title": "Country"},
+        {"field": "Region", "type": "ordinal", "title": "Region"},
+        {
+          "field": "Score",
+          "type": "quantitative",
+          "title": "Happiness Score",
+          "format": ".2f"
+        },
+              {
+          "field": "GDP",
+          "type": "quantitative",
+          "title": "GDP",
+          "format": ".3f"
+        }
+      ]
+    },
+    "config": {}
+  }

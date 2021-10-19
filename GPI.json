@@ -1,0 +1,73 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json", 
+    "width": 450,
+    "height": 500,
+    "title": " ",
+    "data": {
+      "url": "https://raw.githubusercontent.com/jackren0000/FIT3179/main/relig_iso.csv"
+    }, 
+    "params": [
+      {
+        "name": "gpi_rank_select", "value": 157,
+        "bind": {
+        "input": "range", "max": 157, "min": 1,
+        "step": -1,
+        "name": "GPI Rank Max: " }
+      },
+      {
+        "name": "gpi_rank_select_2", "value": 1,
+        "bind": {
+        "input": "range", "max": 157, "min": 1,
+        "step": 1,
+        "name": "GPI Rank Min: " }
+      }],
+    "transform": [
+      {"filter": "datum.gdp_pc > 0"}, 
+      {"filter": "datum.gpi_rank > 0"}, 
+      {"filter": "datum.gpi_rank < gpi_rank_select"},
+      {"filter": "datum.gpi_rank > gpi_rank_select_2"},
+      {"filter": "gpi_rank_select > gpi_rank_select_2"}
+      ],
+    
+    "mark": "circle", 
+    "encoding": {
+      "x": {
+        "field": "gdp_pc",
+        "type": "quantitative",
+        "title": "GDP per persent",
+        "axis": {"tickCount": 7},
+        "scale": {"type": "linear", "domain": [100, 70000]}
+      }, 
+      "y": {
+        "field": "gpi_score",
+        "type": "quantitative",
+        "title": "GPI Score",
+        "axis": {"tickCount": 6},
+        "scale": {"type": "linear", "domain": [1, 4]}
+          }, 
+      
+      "opacity": {
+            "value": 0.8 
+      },
+      "size": {
+          "field": "percentage_non_religious", 
+          "type": "quantitative", 
+          "title": "Religous percentage",
+          "scale": {
+            "type": "threshold",
+            "domain": [0, 10, 30, 50, 100], 
+            "range": [10, 50, 150, 200, 300, 400]
+          },
+          "legend": {
+            "format": ".2f"}
+
+      }, 
+  
+    "tooltip": [
+          {"field": "country", "type": "nominal"},
+          {"field": "gdp_pc", "type": "quantitative", "title": "GDP","format": ","}, 
+          {"field": "gpi_score", "type": "quantitative", "title": "GPI","format": ","}, 
+          {"field": "percentage_non_religious","title": "No religious %", "type": "quantitative", "format": ","}
+        ]
+    }
+  }

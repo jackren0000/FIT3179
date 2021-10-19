@@ -1,0 +1,52 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Military expenditure (% of GDP)",
+  
+  
+  "data": {
+    "url": "https://raw.githubusercontent.com/jackren0000/FIT3179/main/military-expenditure-as-share-of-gdp%20(1).csv"
+  }, 
+ "params":[
+    
+
+{
+            "name": "Yearcopy",
+            "value": 1960,
+            
+            "bind": {
+              "name": "year",
+              "input": "range",
+              "min": 1960, "max": 2018, "step": 1
+            }
+          }],
+  "width": 200,
+  "height": 100,
+  
+  "transform": [
+       {"filter": {"field": "Entity", "oneOf": ["Australia", "United States", "United Kingdom", "World", "South Korea", "Germany"]}},
+
+      
+      
+
+       {"filter": "datum.Year==Yearcopy"},
+       
+       {"filter": {"param": "Yearcopy"}}],
+  "layer": [{
+    "mark": {"type": "arc", "innerRadius": 20, "stroke": "#fff"}
+  },{
+    "mark": {"type": "text", "radiusOffset": 10},
+    "encoding": {
+      "text": {"field": "Entity", "type": "nominal"}
+    }
+  }],
+  "encoding": {
+    "theta": {"field": "Number", "type": "quantitative", "stack": true},
+    "radius": {"field": "Number", "scale": {"type": "sqrt", "zero": true, "rangeMin": 20}
+  },
+    "color": {"field": "Entity", "type": "nominal", "legend": null},
+    "tooltip": [
+      {"field": "Entity", "type": "nominal", "title": "Country"},
+      {"field": "Number","format": ".2f", "type": "quantitative"}
+    ]
+  }
+ }
